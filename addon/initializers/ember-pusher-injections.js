@@ -1,4 +1,7 @@
+import PusherService from 'ember-pusher/services/pusher';
+
 export function initialize(application) {
+  application.register('service:pusher', PusherService);
   application.inject('controller', 'pusher', 'service:pusher');
   application.inject('route', 'pusher', 'service:pusher');
 }

@@ -2,11 +2,13 @@ import Ember from 'ember';
 import { keys } from 'ember-pusher/compat';
 
 export default Ember.Mixin.create({
+  pusher: Ember.inject.service(),
+
   init() {
     if (this.PUSHER_SUBSCRIPTIONS) {
       keys(this.PUSHER_SUBSCRIPTIONS).forEach(channelName => {
         let events = this.PUSHER_SUBSCRIPTIONS[channelName];
-        this.pusher.wire(this, channelName, events);
+        this.get('pusher').wire(this, channelName, events);
       });
     }
 
